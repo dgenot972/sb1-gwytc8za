@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './styles/animations.css';
+@import './styles/map.css';
+
+.pattern-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Service Cards */
+.service-card {
+  @apply bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300 cursor-pointer hover:bg-gradient-to-br from-indigo-600/30 to-purple-600/30;
+  transform: translateZ(0);
+}
+
+.service-card:hover {
+  @apply shadow-lg;
+  transform: translateY(-5px) translateZ(0);
+}
+
+/* Buttons */
+.btn-primary {
+  @apply w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply shadow-lg transform -translate-y-0.5;
+}
+
+/* Inputs */
+.input-custom {
+  @apply pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all duration-200;
+}
+
+.input-custom:focus {
+  @apply shadow-md;
+}
