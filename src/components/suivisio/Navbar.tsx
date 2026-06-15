@@ -56,9 +56,12 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200 relative group"
+                className="nav-reveal text-sm font-medium relative group"
               >
-                {link.label}
+                <span className="nav-reveal-track">
+                  <span className="text-slate-300">{link.label}</span>
+                  <span className="text-white">{link.label}</span>
+                </span>
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0066CC] to-[#00D4FF] group-hover:w-full transition-all duration-300" />
               </a>
             ))}
@@ -69,10 +72,13 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); handleNavClick('#contact'); }}
-              className="hidden md:inline-flex items-center gap-2 btn-primary text-xs tracking-widest uppercase"
+              className="hidden md:inline-flex items-center gap-2 btn-primary group text-xs tracking-widest uppercase"
             >
-              <span>Nous contacter</span>
-              <ChevronRight size={14} />
+              <span className="flex items-center gap-2">
+                Nous contacter
+                <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+              </span>
+              <span className="shine" />
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}

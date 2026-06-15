@@ -300,3 +300,153 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.4), rgba(0, 212, 255, 0.4), transparent);
 }
+
+/* ============================================================
+   ENHANCED MOTION — aurora, rotating words, nav reveal, etc.
+   ============================================================ */
+
+/* Animated aurora blobs */
+@keyframes auroraDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(8%, -6%) scale(1.15); }
+  66%  { transform: translate(-6%, 8%) scale(0.92); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+  animation: auroraDrift 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Cursor spotlight — driven by --spot-x / --spot-y CSS vars */
+.spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--spot-x, 50%) var(--spot-y, 30%),
+    rgba(0, 212, 255, 0.10),
+    transparent 60%
+  );
+  transition: background 0.2s ease;
+}
+
+/* Rotating words carousel (CSS-only, 4 words / 8s loop) */
+.rotating-words {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+.rotating-word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(6px);
+  animation: wordCycle 8s ease-in-out infinite;
+}
+
+@keyframes wordCycle {
+  0%   { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+  4%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  21%  { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  25%  { opacity: 0; transform: translateY(-24px); filter: blur(8px); }
+  100% { opacity: 0; transform: translateY(-24px); filter: blur(8px); }
+}
+
+/* Animated nav link — text slides up to reveal a brighter copy */
+.nav-reveal {
+  position: relative;
+  display: inline-flex;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  overflow: hidden;
+}
+.nav-reveal-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-reveal:hover .nav-reveal-track {
+  transform: translateY(-50%);
+}
+
+/* Sweeping shine for primary buttons */
+.btn-primary .shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-150%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.btn-primary:hover .shine {
+  transform: translateX(150%);
+}
+
+/* Conic gradient ring used for the highlighted/feature elements */
+@keyframes spinRing {
+  to { transform: rotate(1turn); }
+}
+.conic-ring {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, transparent 0%, #00D4FF 20%, #0066CC 40%, transparent 60%);
+  animation: spinRing 6s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.group:hover .conic-ring {
+  opacity: 0.7;
+}
+
+/* Marquee for the trust / clients strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Subtle entrance for the scroll-down chevron */
+@keyframes scrollNudge {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+.scroll-nudge { animation: scrollNudge 2s ease-in-out infinite; }
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob,
+  .rotating-word,
+  .conic-ring,
+  .marquee-track,
+  .scroll-nudge,
+  .shimmer-text,
+  .particle,
+  .orb {
+    animation: none !important;
+  }
+  .rotating-word:first-child { opacity: 1; transform: none; filter: none; }
+}
