@@ -100,12 +100,18 @@ export default function Services() {
             return (
               <div
                 key={exp.title}
-                className={`gradient-border card-hover rounded-xl p-6 cursor-default reveal ${isVisible ? 'visible' : ''}`}
+                className={`group relative overflow-hidden gradient-border card-hover rounded-xl p-6 cursor-default reveal ${isVisible ? 'visible' : ''}`}
                 style={{ transitionDelay: `${delay}ms` }}
               >
+                {/* Hover glow in the card's own color */}
+                <span
+                  className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ background: `radial-gradient(circle, ${exp.color}33 0%, transparent 70%)`, filter: 'blur(10px)' }}
+                />
+
                 {/* Icon */}
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  className="relative w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
                   style={{
                     background: `linear-gradient(135deg, ${exp.color}22, ${exp.color}44)`,
                     border: `1px solid ${exp.color}44`,
@@ -115,12 +121,12 @@ export default function Services() {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display font-bold text-sm tracking-wider text-white mb-4 leading-tight">
+                <h3 className="relative font-display font-bold text-sm tracking-wider text-white mb-4 leading-tight">
                   {exp.title}
                 </h3>
 
                 {/* Features */}
-                <ul className="space-y-2">
+                <ul className="relative space-y-2">
                   {exp.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2 text-slate-400 text-sm leading-snug">
                       <span

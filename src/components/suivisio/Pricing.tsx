@@ -101,7 +101,7 @@ export default function Pricing() {
               style={{ transitionDelay: `${i * 120}ms` }}
             >
               <div
-                className={`relative h-full flex flex-col rounded-2xl p-6 transition-all duration-300 ${
+                className={`group relative h-full flex flex-col rounded-2xl p-6 overflow-hidden transition-all duration-300 ${
                   plan.highlight
                     ? 'gradient-border glow-blue scale-100 lg:scale-105 z-10'
                     : 'glass card-hover'
@@ -173,6 +173,7 @@ export default function Pricing() {
                     {plan.price === 'SUR DEVIS' ? 'Demander un devis' : 'Choisir cette offre'}
                     <ArrowRight size={14} />
                   </span>
+                  {plan.highlight && <span className="shine" />}
                 </a>
               </div>
             </div>
