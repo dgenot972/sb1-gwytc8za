@@ -1,27 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+// On GitHub Pages this is a project site served from /sb1-gwytc8za/.
+// Locally (dev / preview) we keep the root base so everything works as usual.
 export default defineConfig({
+  base: process.env.GITHUB_PAGES === 'true' ? '/sb1-gwytc8za/' : '/',
   plugins: [react()],
-  optimizeDeps: {
-    include: ['react-map-gl', 'mapbox-gl']
-  },
-  resolve: {
-    alias: {
-      'mapbox-gl': 'mapbox-gl'
-    }
-  },
-  build: {
-    sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'mapbox': ['mapbox-gl', 'react-map-gl']
-        }
-      }
-    }
-  },
-  define: {
-    'process.env.VITE_MAPBOX_TOKEN': JSON.stringify(process.env.VITE_MAPBOX_TOKEN)
-  }
 });
