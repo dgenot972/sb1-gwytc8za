@@ -1,23 +1,29 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Header } from './components/Header';
-import { HomePage } from './pages/HomePage';
-import { ShippingPage } from './pages/ShippingPage';
-import { RidesharePage } from './pages/RidesharePage';
-import { FreterPage } from './pages/FreterPage';
+import Navbar from './components/suivisio/Navbar';
+import Hero from './components/suivisio/Hero';
+import Services from './components/suivisio/Services';
+import Process from './components/suivisio/Process';
+import Stats from './components/suivisio/Stats';
+import WhyUs from './components/suivisio/WhyUs';
+import Pricing from './components/suivisio/Pricing';
+import Guarantees from './components/suivisio/Guarantees';
+import Contact from './components/suivisio/Contact';
+import Footer from './components/suivisio/Footer';
 
-export function App() {
+function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/expedier" element={<ShippingPage />} />
-          <Route path="/covoiturage" element={<RidesharePage />} />
-          <Route path="/devenir-freter" element={<FreterPage />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div className="bg-[#020B18] min-h-screen overflow-x-hidden">
+      <Navbar />
+      <Hero />
+      <Services />
+      <Process />
+      <Stats />
+      <WhyUs />
+      <Pricing />
+      <Guarantees />
+      <Contact />
+      <Footer />
+    </div>
   );
 }
+
+export default App;
