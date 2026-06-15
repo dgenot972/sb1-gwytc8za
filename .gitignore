@@ -1,5 +1,6 @@
-# Claude Code internal
-.claude/
+# Claude Code internal (keep installed skills tracked)
+.claude/*
+!.claude/skills/
 
 # Logs
 logs

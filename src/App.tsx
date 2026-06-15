@@ -1,5 +1,6 @@
 import Navbar from './components/suivisio/Navbar';
 import Hero from './components/suivisio/Hero';
+import TrustStrip from './components/suivisio/TrustStrip';
 import Services from './components/suivisio/Services';
 import Process from './components/suivisio/Process';
 import Stats from './components/suivisio/Stats';
@@ -14,6 +15,7 @@ function App() {
     <div className="bg-[#020B18] min-h-screen overflow-x-hidden">
       <Navbar />
       <Hero />
+      <TrustStrip />
       <Services />
       <Process />
       <Stats />
